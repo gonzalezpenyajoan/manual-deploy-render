@@ -4,17 +4,17 @@ export const db = {
     users: [
         {
             _id: new ObjectId(),
-            name: 'Admin',
             email: 'admin@email.com',
             password: 'test',
-            role: 'admin'
+            role: 'admin',
+            avatar: '/admin-avatar.png'
         },
         {
             _id: new ObjectId(),
-            name: 'User',
             email: 'standard@email.com',
             password: 'test',
-            role: 'standard-user'
+            role: 'standard-user',
+            avatar: '/user-avatar.png'
         }
     ],
     houses: [
