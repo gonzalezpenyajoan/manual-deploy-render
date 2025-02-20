@@ -38,7 +38,10 @@ const paginateHouseList = (houseList, page, pageSize) => {
     return paginatedHouseList;
 };
 export const mockRepository = {
-    getHouseList: async (page, pageSize) => paginateHouseList(db.houses, page, pageSize),
+    getHouseList: async (page, pageSize, countryCode) => {
+        const houses = !countryCode ? db.houses : db.houses.filter((h) => h.address.country_code === countryCode);
+        return paginateHouseList(houses, page, pageSize);
+    },
     getHouse: async (id) => db.houses.find((h) => h._id === id),
     saveHouse: async (house) => db.houses.some((h) => h._id === house._id) ? updateHouse(house) : insertHouse(house),
     deleteHouse: async (id) => {

@@ -1,10 +1,11 @@
 import { getHouseContext } from "../house.context.js";
 export const mongoDBRepository = {
-    getHouseList: async (page, pageSize) => {
+    getHouseList: async (page, pageSize, countryCode) => {
         const skip = Boolean(page) ? (page - 1) * pageSize : 0;
         const limit = pageSize ?? 0;
+        const countryFilter = countryCode ? { "address.country_code": countryCode } : {};
         return await getHouseContext()
-            .find()
+            .find(countryFilter)
             .skip(skip)
             .limit(limit)
             .toArray();
